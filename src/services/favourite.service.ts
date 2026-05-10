@@ -4,6 +4,7 @@ export class FavouriteService {
   private favouriteRepository = new FavouriteRepository();
 
   async addFavourite(userId: string, dealExternalId: string, brandSlug: string) {
+    console.log(`[Favourite Service] addFavourite called:`, { userId, dealExternalId, brandSlug });
     if (!userId || !dealExternalId || !brandSlug) {
       throw new Error("userId, dealExternalId, and brandSlug are required");
     }
@@ -14,6 +15,7 @@ export class FavouriteService {
       brandSlug
     );
 
+
     return {
       success: true,
       data: favourite,
@@ -22,6 +24,7 @@ export class FavouriteService {
   }
 
   async removeFavourite(userId: string, dealExternalId: string, brandSlug: string) {
+    console.log(`[Favourite Service] removeFavourite called:`, { userId, dealExternalId, brandSlug });
     if (!userId || !dealExternalId || !brandSlug) {
       throw new Error("userId, dealExternalId, and brandSlug are required");
     }
@@ -35,6 +38,7 @@ export class FavouriteService {
     if (!removed) {
       throw new Error("Favourite not found");
     }
+
 
     return {
       success: true,
@@ -130,6 +134,8 @@ export class FavouriteService {
       data: { isFavourite: isFav },
     };
   }
+
+
 }
 
 export const favouriteService = new FavouriteService();
